@@ -1,0 +1,26 @@
+.root{
+    -fx-background-image: url("../Resources/background.jpg");
+    -fx-background-repeat:no-repeat;
+    -fx-background-size: cover;
+
+}
+@font-face {
+    font-family: Super-Mario;
+    src: url("../Resources/supermario..ttf");
+}
+
+Button {
+    -fx-background-color: linear-gradient(#ff5400, #be1d00);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-font-family: fantasy;
+    -fx-text-fill: white;
+}
+
+Button:hover{
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+            #9d4024,
+            #d86e3a,
+            radial-gradient(center 50% 50%, radius 100%, #ea7f4b, #c54e2c);
+}

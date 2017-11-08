@@ -1,0 +1,6 @@
+.root{
+    -fx-background-image: url("../Resources/about.png");
+    -fx-background-repeat:no-repeat;
+    -fx-background-size: cover;
+
+}

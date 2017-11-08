@@ -1,62 +1,57 @@
 package ViewModel;
 
 import Model.IModel;
+import Model.Model;
+import algorithms.mazeGenerators.Maze;
+import algorithms.search.Solution;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
 
 import java.util.Observable;
 import java.util.Observer;
 
-/**
- * Created by Aviadjo on 6/14/2017.
- */
+
 public class ViewModel extends Observable implements Observer {
 
-    private IModel model;
+    public IModel myModel;
+    //public IntegerProperty rowPos;
+    //public IntegerProperty colPos;
 
-    private int characterPositionRowIndex;
-    private int characterPositionColumnIndex;
 
-    public StringProperty characterPositionRow = new SimpleStringProperty("1"); //For Binding
-    public StringProperty characterPositionColumn = new SimpleStringProperty("1"); //For Binding
 
-    public ViewModel(IModel model){
-        this.model = model;
+    public ViewModel(IModel myModel) {
+        this.myModel = myModel;
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        if (o==model){
-            characterPositionRowIndex = model.getCharacterPositionRow();
-            characterPositionRow.set(characterPositionRowIndex + "");
-            characterPositionColumnIndex = model.getCharacterPositionColumn();
-            characterPositionColumn.set(characterPositionColumnIndex + "");
+        if(o==myModel){
             setChanged();
-            notifyObservers();
+            notifyObservers(arg);
         }
     }
-
-    public void generateMaze(int width, int height){
-        model.generateMaze(width, height);
+    public void generateMaze(int height,int width){
+        myModel.GenerateMaze(height,width);
+    }
+    public boolean generateSol(){
+        return myModel.GenerateSol();
     }
 
-    public void moveCharacter(KeyCode movement){
-        model.moveCharacter(movement);
+    public void moveCharacter(KeyCode move,int prop){
+        myModel.moveCharacter(move,prop);
     }
-
-    public int[][] getMaze() {
-        return model.getMaze();
+    public int[] getPos(){
+        int[] returnArr={myModel.getPosRow(),myModel.getPosCol()};
+        return returnArr;
     }
-
-    public int getCharacterPositionRow() {
-        return characterPositionRowIndex;
+    public Maze getMaze(){
+        return myModel.getMaze();
     }
-
-    public int getCharacterPositionColumn() {
-        return characterPositionColumnIndex;
+    public Solution getSol(){return myModel.getSol();}
+    public void exitProgram(){
+        myModel.stop();
+    }
+    public void setMaze(Maze maze){
+        myModel.setMaze(maze);
     }
 }

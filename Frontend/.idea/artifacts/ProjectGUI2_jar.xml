@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ProjectGUI2:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProjectGUI2_jar</output-path>
+    <root id="archive" name="ProjectGUI2.jar">
+      <element id="module-output" name="ProjectGUI2" />
+      <element id="extracted-dir" path="$USER_HOME$/IdeaProjects/ATP2017 - Project - PartA/out/artifacts/ATP2017___Project___PartA_jar/ATP2017 - Project - PartA.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
