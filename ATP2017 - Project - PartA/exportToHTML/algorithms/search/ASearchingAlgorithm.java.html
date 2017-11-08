@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>ASearchingAlgorithm.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,0,255); }
+.s4 { color: rgb(128,128,128); font-weight: bold; font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+ASearchingAlgorithm.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">algorithms.search; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.PriorityQueue; 
+ 
+</span><span class="s2">/** 
+ * Created by Tal and Alex on 05/04/2017. 
+ */</span><span class="s1"> 
+ 
+</span><span class="s2">/** 
+ * An abstract type class for all the Searching Algorithms. 
+ * All the Searching algorithms have the same implementation of the function getNumberOfNodesEvaluated however the solve function is distinct for each Searching algorithms. 
+ */</span><span class="s1"> 
+</span><span class="s0">public abstract class </span><span class="s1">ASearchingAlgorithm </span><span class="s0">implements </span><span class="s1">ISearchingAlgorithm{ 
+ 
+    </span><span class="s0">private int </span><span class="s1">evaluatedNodes; 
+    </span><span class="s0">protected </span><span class="s1">String name; 
+ 
+    </span><span class="s0">public </span><span class="s1">ASearchingAlgorithm() { 
+        evaluatedNodes=</span><span class="s3">0</span><span class="s1">; 
+    } 
+ 
+    </span><span class="s2">/** 
+     * The function solves an ISearchable problem according to a specific algorithm 
+     * </span><span class="s4">@param </span><span class="s2">searchable - An object that has to implement the ISearchable Interface 
+     * </span><span class="s4">@return </span><span class="s2">returns the Solution according to a specific algorithm 
+     */</span><span class="s1"> 
+    @Override 
+    </span><span class="s0">public abstract </span><span class="s1">Solution solve(ISearchable searchable) ; 
+ 
+    </span><span class="s2">/** 
+     * The Function returns the Number of Nodes that were evaluated during the run of the searching algorithm 
+     * </span><span class="s4">@return </span><span class="s2">int - Number of Nodes that were evaluated during the run of the searching algorithm 
+     */</span><span class="s1"> 
+    @Override 
+    </span><span class="s0">public int </span><span class="s1">getNumberOfNodesEvaluated() { 
+        </span><span class="s0">return </span><span class="s1">evaluatedNodes; 
+    } 
+ 
+    </span><span class="s2">/** 
+     * 
+     * </span><span class="s4">@return </span><span class="s2">Name of the Searching Algorithm that was used to solve the Problem 
+     */</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">String getName(){ 
+      </span><span class="s0">return </span><span class="s1">name; 
+    } 
+ 
+    </span><span class="s2">/** 
+     * 
+     * </span><span class="s4">@param </span><span class="s2">nodes - Number of Nodes that were evaluated during the run of the searching algorithm 
+     */</span><span class="s1"> 
+    </span><span class="s0">protected void </span><span class="s1">setNumberOfNodesEvaluated(</span><span class="s0">int </span><span class="s1">nodes){ 
+        </span><span class="s0">this</span><span class="s1">.evaluatedNodes = nodes; 
+    } 
+ 
+    </span><span class="s2">/** 
+     * The Function gets the Start State and the End State, after the searching algorithm solved the problem, and goes from the End state to the state that he came from and so on until its gets to the start state and then returns the solution 
+     * </span><span class="s4">@param </span><span class="s2">to - End State 
+     * </span><span class="s4">@param </span><span class="s2">from - Start Date 
+     * </span><span class="s4">@return </span><span class="s2">- Solution of the Problem 
+     */</span><span class="s1"> 
+    </span><span class="s0">protected </span><span class="s1">Solution backTrace(AState to, AState from){ 
+        Solution path = </span><span class="s0">new </span><span class="s1">Solution(); 
+        path.addToSol(to); 
+        </span><span class="s0">while</span><span class="s1">(! to.getCameFrom() .equals(from) ){ 
+            path.addToSol(to.getCameFrom()); 
+            to = to.getCameFrom(); 
+        } 
+        path.addToSol(from); 
+        </span><span class="s0">return </span><span class="s1">path; 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>

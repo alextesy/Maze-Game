@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>AState.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(101,138,186); font-weight: bold; }
+.s4 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+AState.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">algorithms.search; 
+ 
+</span><span class="s2">/** 
+ * An abstract type class for all kinds of States. 
+ */</span><span class="s1"> 
+</span><span class="s0">public abstract class </span><span class="s1">AState { 
+    </span><span class="s0">private </span><span class="s1">String name; 
+    </span><span class="s0">private </span><span class="s1">AState cameFrom; 
+    </span><span class="s0">protected double </span><span class="s1">cost; 
+ 
+    </span><span class="s0">public </span><span class="s1">AState(){</span><span class="s0">this</span><span class="s1">.name = </span><span class="s3">&quot;default&quot;</span><span class="s1">;}; 
+    </span><span class="s0">public </span><span class="s1">AState(String name, </span><span class="s0">double </span><span class="s1">cost){ 
+        </span><span class="s0">this</span><span class="s1">.name = name; 
+        </span><span class="s0">this</span><span class="s1">.cost = cost; 
+        </span><span class="s0">this</span><span class="s1">.cameFrom = </span><span class="s0">null</span><span class="s1">; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">String getName() { 
+        </span><span class="s0">return </span><span class="s1">name; 
+    } 
+    </span><span class="s0">public </span><span class="s1">AState getCameFrom(){ 
+        </span><span class="s0">return </span><span class="s1">cameFrom; 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">setCameFrom(AState cameFrom) { 
+        </span><span class="s0">this</span><span class="s1">.cameFrom = cameFrom; 
+        </span><span class="s0">this</span><span class="s1">.cost = cameFrom.getCost() + </span><span class="s4">1</span><span class="s1">; 
+    } 
+    </span><span class="s0">public double </span><span class="s1">getCost() { 
+        </span><span class="s0">return </span><span class="s1">cost; 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public </span><span class="s1">String toString() { 
+        </span><span class="s0">return </span><span class="s1">name ; 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">equals(Object other) { 
+        </span><span class="s0">boolean </span><span class="s1">result = </span><span class="s0">false</span><span class="s1">; 
+        </span><span class="s0">if </span><span class="s1">(other </span><span class="s0">instanceof </span><span class="s1">AState) { 
+            AState that = (AState) other; 
+            result = </span><span class="s0">this</span><span class="s1">.name == ((AState) other).name; 
+        } 
+        </span><span class="s0">return </span><span class="s1">result; 
+    } 
+} 
+</span></pre>
+</body>
+</html>

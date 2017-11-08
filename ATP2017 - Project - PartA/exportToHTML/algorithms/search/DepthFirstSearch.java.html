@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>DepthFirstSearch.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(101,138,186); font-weight: bold; }
+.s4 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+DepthFirstSearch.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">algorithms.search; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.ArrayList; 
+</span><span class="s0">import </span><span class="s1">java.util.Stack; 
+ 
+</span><span class="s2">/** 
+ * Created by Tal and Alex on 05/04/2017. 
+ */</span><span class="s1"> 
+ 
+</span><span class="s2">/** 
+ * https://en.wikipedia.org/wiki/Depth-first_search 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">DepthFirstSearch </span><span class="s0">extends </span><span class="s1">ASearchingAlgorithm { 
+ 
+    </span><span class="s0">public </span><span class="s1">DepthFirstSearch() { 
+        </span><span class="s0">super</span><span class="s1">.name = </span><span class="s3">&quot;DepthFirstSearch&quot;</span><span class="s1">; 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public </span><span class="s1">Solution solve(ISearchable s) { 
+        ArrayList&lt;AState&gt; visited = </span><span class="s0">new </span><span class="s1">ArrayList&lt;AState&gt;(); 
+        Stack&lt;AState&gt; stack = </span><span class="s0">new </span><span class="s1">Stack&lt;AState&gt;(); 
+        setNumberOfNodesEvaluated(</span><span class="s4">1</span><span class="s1">); 
+        stack.push(s.getInitialState()); 
+        </span><span class="s0">while</span><span class="s1">(!stack.isEmpty()){ 
+            AState v = stack.pop(); 
+            setNumberOfNodesEvaluated(getNumberOfNodesEvaluated()+</span><span class="s4">1</span><span class="s1">); 
+            </span><span class="s0">if</span><span class="s1">(v.equals(s.getGoalState())) 
+                </span><span class="s0">return </span><span class="s1">backTrace(v,s.getInitialState()); 
+            </span><span class="s0">if</span><span class="s1">(!visited.contains(v)){ 
+                visited.add(v); 
+                ArrayList&lt;AState&gt; adjacentV = s.getAllPossibleStates(v); 
+                </span><span class="s0">for</span><span class="s1">(AState u: adjacentV){ 
+                    </span><span class="s0">if</span><span class="s1">(!visited.contains(u)){ 
+                        u.setCameFrom(v); 
+                        stack.push(u); 
+                    } 
+ 
+                } 
+            } 
+        } 
+        </span><span class="s0">return null</span><span class="s1">; 
+    } 
+} 
+</span></pre>
+</body>
+</html>

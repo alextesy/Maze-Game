@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>MazeState.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(101,138,186); font-weight: bold; }
+.s4 { color: rgb(128,128,128); font-weight: bold; font-style: italic; }
+.s5 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+MazeState.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">algorithms.search; 
+ 
+</span><span class="s0">import </span><span class="s1">algorithms.mazeGenerators.Position; 
+ 
+</span><span class="s0">import </span><span class="s1">java.io.Serializable; 
+ 
+</span><span class="s2">/** 
+ * Created by Tal and Alex on 05/04/2017. 
+ */</span><span class="s1"> 
+ 
+</span><span class="s2">/** 
+ * A class that represents the a State of Maze 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">MazeState </span><span class="s0">extends </span><span class="s1">AState </span><span class="s0">implements </span><span class="s1">Serializable { 
+ 
+    Position state; 
+    </span><span class="s0">private boolean </span><span class="s1">isWall; 
+ 
+    </span><span class="s0">public </span><span class="s1">MazeState(Position pos, </span><span class="s0">boolean </span><span class="s1">isWall, </span><span class="s0">double </span><span class="s1">cost){ 
+        </span><span class="s0">super</span><span class="s1">(</span><span class="s3">&quot;&lt;&quot;</span><span class="s1">+pos.getRowIndex() + </span><span class="s3">&quot;,&quot; </span><span class="s1">+ pos.getColumnIndex() + </span><span class="s3">&quot;&gt;&quot;</span><span class="s1">, cost); 
+        </span><span class="s0">this</span><span class="s1">.state = pos; 
+        </span><span class="s0">this</span><span class="s1">.isWall=isWall; 
+    } 
+ 
+    </span><span class="s2">/** 
+     * 
+     * </span><span class="s4">@return </span><span class="s2">True of The current State is a Wall 
+     */</span><span class="s1"> 
+    </span><span class="s0">public boolean </span><span class="s1">isWall() { 
+        </span><span class="s0">return </span><span class="s1">isWall; 
+    } 
+    </span><span class="s2">/** 
+     * 
+     * </span><span class="s4">@return </span><span class="s2">The position of the current State 
+     */</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Position getState() { 
+        </span><span class="s0">return </span><span class="s1">state; 
+    } 
+ 
+    </span><span class="s2">/** 
+     * 
+     * </span><span class="s4">@param </span><span class="s2">other - an Object you want to compare to the State 
+     * </span><span class="s4">@return </span><span class="s2">- true if the object is a Maze State at the same Position 
+     */</span><span class="s1"> 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">equals(Object other) { 
+        </span><span class="s0">boolean </span><span class="s1">result = </span><span class="s0">false</span><span class="s1">; 
+        </span><span class="s0">if </span><span class="s1">(other </span><span class="s0">instanceof </span><span class="s1">MazeState) { 
+            MazeState that = (MazeState) other; 
+            result = (</span><span class="s0">this</span><span class="s1">.state.getRowIndex()== that.state.getRowIndex()&amp;&amp; </span><span class="s0">this</span><span class="s1">.state.getColumnIndex()== that.state.getColumnIndex()); 
+        } 
+        </span><span class="s0">return </span><span class="s1">result; 
+    } 
+ 
+    </span><span class="s2">/** 
+     * 
+     * </span><span class="s4">@return </span><span class="s2">a Hash Code of the object 
+     */</span><span class="s1"> 
+    @Override 
+    </span><span class="s0">public int </span><span class="s1">hashCode() { 
+        </span><span class="s0">return </span><span class="s1">(</span><span class="s5">41 </span><span class="s1">* (</span><span class="s5">41 </span><span class="s1">+ state.getRowIndex()) + state.getColumnIndex()); 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public </span><span class="s1">String toString() { 
+        </span><span class="s0">return </span><span class="s3">&quot;&lt;&quot; </span><span class="s1">+ state.getRowIndex() + </span><span class="s3">&quot;,&quot; </span><span class="s1">+ state.getColumnIndex() + </span><span class="s3">&quot;&gt;&quot;</span><span class="s1">; 
+    } 
+} 
+</span></pre>
+</body>
+</html>

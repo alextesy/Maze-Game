@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>ISearchingAlgorithm.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(128,128,128); font-weight: bold; font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+ISearchingAlgorithm.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">algorithms.search; 
+ 
+</span><span class="s2">/** 
+ * Created by Tal and Alex on 05/04/2017. 
+ */</span><span class="s1"> 
+</span><span class="s2">/** 
+ * An interface that defines the functionality of each Searching Algorithm. 
+ * Each object has to implement the getInitialState function and the getGoalState function and getAllPossibleStates. 
+ */</span><span class="s1"> 
+</span><span class="s0">public interface </span><span class="s1">ISearchingAlgorithm { 
+    </span><span class="s2">/** 
+     * 
+     * </span><span class="s3">@return </span><span class="s2">The Name of the Searching Algorithm 
+     */</span><span class="s1"> 
+    String getName(); 
+    </span><span class="s2">/** 
+     * The function solves an ISearchable problem according to a specific algorithm 
+     * </span><span class="s3">@param </span><span class="s2">searchable - An object that has to implement the ISearchable Interface 
+     * </span><span class="s3">@return </span><span class="s2">returns the Solution according to a specific algorithm 
+     */</span><span class="s1"> 
+    Solution solve(ISearchable searchable); 
+    </span><span class="s2">/** 
+     * The Function returns the Number of Nodes that were evaluated during the run of the searching algorithm 
+     * </span><span class="s3">@return </span><span class="s2">int - Number of Nodes that were evaluated during the run of the searching algorithm 
+     */</span><span class="s1"> 
+    </span><span class="s0">int </span><span class="s1">getNumberOfNodesEvaluated(); 
+} 
+</span></pre>
+</body>
+</html>

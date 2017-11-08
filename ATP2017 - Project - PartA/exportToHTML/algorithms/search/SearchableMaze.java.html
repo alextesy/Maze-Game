@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>SearchableMaze.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(128,128,128); font-weight: bold; font-style: italic; }
+.s4 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+SearchableMaze.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">algorithms.search; 
+ 
+</span><span class="s0">import </span><span class="s1">algorithms.mazeGenerators.Maze; 
+</span><span class="s0">import </span><span class="s1">algorithms.mazeGenerators.Position; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.ArrayList; 
+</span><span class="s0">import </span><span class="s1">java.util.HashMap; 
+</span><span class="s0">import </span><span class="s1">java.util.Map; 
+ 
+</span><span class="s2">/** 
+ * Created by Tal and Alex on 05/04/2017. 
+ */</span><span class="s1"> 
+ 
+</span><span class="s2">/** 
+ * an Implementation of a Searchable Maze 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">SearchableMaze </span><span class="s0">implements </span><span class="s1">ISearchable { 
+ 
+    </span><span class="s0">private </span><span class="s1">Maze mySearchableMaze; 
+ 
+ 
+   </span><span class="s0">public </span><span class="s1">SearchableMaze(Maze maze) 
+   { 
+       </span><span class="s0">this</span><span class="s1">.mySearchableMaze = maze; 
+   } 
+    </span><span class="s2">/** 
+     * 
+     * </span><span class="s3">@return </span><span class="s2">The Initial State of the Problem 
+     */</span><span class="s1"> 
+    @Override 
+    </span><span class="s0">public </span><span class="s1">AState getInitialState() { 
+        </span><span class="s0">return new </span><span class="s1">MazeState(mySearchableMaze.getStartPosition(),</span><span class="s0">false</span><span class="s1">,</span><span class="s4">0</span><span class="s1">); 
+    } 
+    </span><span class="s2">/** 
+     * 
+     * </span><span class="s3">@return </span><span class="s2">The Goal State of the Problem 
+     */</span><span class="s1"> 
+    @Override 
+    </span><span class="s0">public </span><span class="s1">AState getGoalState(){ 
+        </span><span class="s0">return new </span><span class="s1">MazeState(mySearchableMaze.getGoalPosition(),</span><span class="s0">false</span><span class="s1">,Double.POSITIVE_INFINITY); 
+    } 
+    </span><span class="s2">/** 
+     *  The Function returns all the Possible States from the Given State 
+     * </span><span class="s3">@param </span><span class="s2">- The given State 
+     * </span><span class="s3">@return </span><span class="s2">- An ArrayList of all the Possible 
+     */</span><span class="s1"> 
+    @Override 
+    </span><span class="s0">public </span><span class="s1">ArrayList&lt;AState&gt; getAllPossibleStates(AState state){ 
+        MazeState s = (MazeState)state; 
+        ArrayList&lt;AState&gt;  moves = </span><span class="s0">new </span><span class="s1">ArrayList&lt;AState&gt; (); 
+ 
+ 
+        </span><span class="s0">int </span><span class="s1">row = s.getState().getRowIndex(); 
+        </span><span class="s0">int </span><span class="s1">col = s.getState().getColumnIndex(); 
+        </span><span class="s0">int </span><span class="s1">[][] matrix = mySearchableMaze.getMazeMatrix(); 
+ 
+ 
+        </span><span class="s0">if</span><span class="s1">(row+</span><span class="s4">1 </span><span class="s1">&lt; matrix.length){ 
+            </span><span class="s0">if</span><span class="s1">( matrix[row+</span><span class="s4">1</span><span class="s1">][col]==</span><span class="s4">0 </span><span class="s1">){ 
+                moves.add(</span><span class="s0">new </span><span class="s1">MazeState(</span><span class="s0">new </span><span class="s1">Position(row+</span><span class="s4">1</span><span class="s1">,col),</span><span class="s0">false</span><span class="s1">,s.getCost()+</span><span class="s4">1</span><span class="s1">)); 
+ 
+            } 
+        } 
+        </span><span class="s0">if</span><span class="s1">(row-</span><span class="s4">1 </span><span class="s1">&gt;= </span><span class="s4">0  </span><span class="s1">){ 
+            </span><span class="s0">if</span><span class="s1">( matrix[row-</span><span class="s4">1</span><span class="s1">][col]==</span><span class="s4">0</span><span class="s1">){ 
+                moves.add(</span><span class="s0">new </span><span class="s1">MazeState(</span><span class="s0">new </span><span class="s1">Position(row-</span><span class="s4">1</span><span class="s1">,col),</span><span class="s0">false</span><span class="s1">,s.getCost()+</span><span class="s4">1</span><span class="s1">)); 
+ 
+            } 
+        } 
+        </span><span class="s0">if</span><span class="s1">(col+</span><span class="s4">1 </span><span class="s1">&lt; matrix[</span><span class="s4">0</span><span class="s1">].length ){ 
+            </span><span class="s0">if</span><span class="s1">( matrix[row][col+</span><span class="s4">1</span><span class="s1">]==</span><span class="s4">0 </span><span class="s1">){ 
+                moves.add(</span><span class="s0">new </span><span class="s1">MazeState(</span><span class="s0">new </span><span class="s1">Position(row,col+</span><span class="s4">1</span><span class="s1">),</span><span class="s0">false</span><span class="s1">,s.getCost()+</span><span class="s4">1</span><span class="s1">)); 
+ 
+            } 
+        } 
+        </span><span class="s0">if</span><span class="s1">(col-</span><span class="s4">1 </span><span class="s1">&gt;= </span><span class="s4">0 </span><span class="s1">){ 
+            </span><span class="s0">if</span><span class="s1">( matrix[row][col-</span><span class="s4">1</span><span class="s1">]==</span><span class="s4">0 </span><span class="s1">){ 
+                moves.add(</span><span class="s0">new </span><span class="s1">MazeState(</span><span class="s0">new </span><span class="s1">Position(row,col-</span><span class="s4">1</span><span class="s1">),</span><span class="s0">false</span><span class="s1">,s.getCost()+</span><span class="s4">1</span><span class="s1">)); 
+            } 
+        } 
+        </span><span class="s0">return </span><span class="s1">moves; 
+    } 
+} 
+ 
+</span></pre>
+</body>
+</html>
